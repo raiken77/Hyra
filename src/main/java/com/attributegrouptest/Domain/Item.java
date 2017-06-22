@@ -3,6 +3,7 @@ package com.attributegrouptest.Domain;
 import com.attributegrouptest.Enums.ItemCondition;
 
 import javax.persistence.*;
+import java.util.Map;
 
 /**
  * Created by Noobs on 04/09/2016.
@@ -17,18 +18,17 @@ public class Item {
     private long id;
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private ItemCondition condition;
+    private String condition;
 
     @Column(name = "rent_price")
     private double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "renter_id")
     private User renter;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "rentee_id")
     private User rentee;
 
@@ -36,7 +36,7 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Item(String description, ItemCondition condition, double price, User renter, User rentee, Category category) {
+    public Item(String description, String condition, double price, User renter, User rentee, Category category) {
         this.description = description;
         this.condition = condition;
         this.price = price;
@@ -66,11 +66,11 @@ public class Item {
         this.description = description;
     }
 
-    public ItemCondition getCondition() {
+    public String getCondition() {
         return condition;
     }
 
-    public void setCondition(ItemCondition condition) {
+    public void setCondition(String condition) {
         this.condition = condition;
     }
 
@@ -104,5 +104,20 @@ public class Item {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String toString()
+    {
+        return "Description: " + this.description + " , "
+                + "Condition: " + this.condition.toString() +" , " +
+                "Price: " + this.price + " , " + "renter: " + this.renter
+                +" , " + "Rentee: " + this.rentee + " , " + "Category: " +
+                " , " + this.category;
+    }
+
+    public void setBasicParameters(Map<String,String[]> values, Item item)
+    {
+
+
     }
 }

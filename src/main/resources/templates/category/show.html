@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View Items for category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <th:block th:replace="fragments/headers :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar"></th:block>
+
+    <h1 th:text="${category.type}"></h1>
+
+    <table class="table table-hover">
+        <tbody>
+        <tr th:each="item : ${category.items}">
+            <tr th:if="${item != null}">
+            <td  th:text="${item.id}"></td>
+            <td  th:text="${item.description}"></td>
+            <td  th:text="${item.condition}"></td>
+            <td  th:text="${item.price}"></td>
+            <td  th:text="${item.renter.username}"></td>
+
+            <td >
+                <form th:action="@{'/items/' +${item.id}}" th:method="post">
+                    <input class="btn btn-default" th:type="submit" th:value="Rent"/>
+                </form>
+            </td>
+            </tr>
+        </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

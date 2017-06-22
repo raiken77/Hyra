@@ -20,14 +20,15 @@ public class User {
     private String lastname;
     @Column(name = "phonenumber")
     private String phoneNumber;
+
+    @Email
     private String username;
+
     private String password;
 
     @Transient
     private String passwordConfirm;
 
-    @Email
-    private String email;
 
     @OneToMany(mappedBy = "rentee", cascade = CascadeType.ALL)
     private Set<Item> rentedItems;
@@ -40,13 +41,12 @@ public class User {
     private Set<Role> roles;
 
 
-    public User(String firstname, String lastname, String phoneNumber, String username, String password, String email) {
+    public User(String firstname, String lastname, String phoneNumber, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
-        this.email = email;
     }
 
     public User()
@@ -105,14 +105,6 @@ public class User {
     public String fullname()
     {
         return this.firstname + this.lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Set<Role> getRoles() {

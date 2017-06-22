@@ -15,13 +15,12 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Enumerated(EnumType.STRING)
-    private CategoryType type;
+    private String type;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Item> items;
 
-    public Category(CategoryType type) {
+    public Category(String type) {
         this.type = type;
     }
 
@@ -38,11 +37,11 @@ public class Category {
         this.id = id;
     }
 
-    public CategoryType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(CategoryType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

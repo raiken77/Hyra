@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rent Item</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <th:block th:replace="fragments/headers :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar"></th:block>
+
+<div class="container">
+    <div class="jumbotron">
+<h1>Form</h1>
+<form action="#" th:action="@{/items}"  method="post">
+    <div class="form-group">
+        <label for="descriptionId">Description</label>
+    <input type="text" th:name="description" id="descriptionId"/>
+    </div>
+
+    <div class="form-group">
+        <label for="conditionId">Condition</label>
+    <select th:name="condition" id="conditionId">
+        <option th:each="condition : ${itemCondition}"
+                th:value="${condition}"
+                th:text="${condition}"></option>
+    </select>
+        </div>
+
+    <div class="form-group">
+        <label for="categoryId">Category</label>
+    <select th:name="category" id="categoryId">
+        <option th:each="category : ${itemCategories}"
+                th:value="${category.toString()}"
+                th:text="${category.toString()}"></option>
+    </select>
+        </div>
+    <div class="form-group">
+        <label for="priceId">Price</label>
+        <input type="text"  th:name="price" id="priceId"/>
+    </div>
+
+    <p><input class="btn btn-default" type="submit" value="Submit"/></p>
+</form>
+    </div>
+</div>
+</body>
+</html>

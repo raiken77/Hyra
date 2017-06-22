@@ -40,6 +40,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
+    @Override
+    public User findById(Long id) {
+        return this.userRepository.findOne(id);
+    }
 
     @SuppressWarnings("unchecked")
     private HashSet<Role> populateSet(Iterable<Role> roles)
